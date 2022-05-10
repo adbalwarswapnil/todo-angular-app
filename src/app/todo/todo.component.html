@@ -1,0 +1,27 @@
+<input class="form-control mb-2 w-25" type="text" #task placeholder="enter your task"  required>
+
+<button type="submit" (click)="addtask(task.value)" class="btn btn-primary mb-2">Add Task</button>
+<div class="show" *ngFor="let item of todos,let i=index">
+
+    <ul *ngIf="!item.completed" class="list-group mb-1">
+        <li class="list-group-item  w-50">{{item.task}} 
+            <button type="submit" (click)="delete(i)" class="btn btn-danger float-end me-1">Delete</button>
+            <button type="submit" (click)="completed(i)" class="btn btn-success float-end me-1">completed</button>
+            <button type="submit" (click)="isupdate(i)" class="btn btn-info float-end me-1">update</button>
+        </li>
+        <div *ngIf="item.ismodify">
+            
+            <input class="form-control mt-2 w-50" type="text" #modified placeholder="enter your task" [value]="item.task" required>
+            <button type="submit" (click)="update(i,modified.value)" class="btn btn-primary mt-2 ">Modify</button>
+        </div>
+        
+    </ul>
+    
+</div> 
+<h3 >Completed Task</h3>
+<div *ngFor="let item of todos,let i=index" >
+    <ul *ngIf="item.completed" class="list-group mb-1">
+        <li class="list-group-item   w-50">{{item.task}} <button type="submit" (click)="delete(i)" class="btn btn-danger float-end">Remove</button></li>
+        
+    </ul>
+</div>
